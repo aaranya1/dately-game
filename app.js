@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5500';
+const API_BASE = 'http://localhost:5000';
 const MAX_GUESSES = 6;
 
 let guessesMade = 0;
@@ -8,9 +8,9 @@ const board = document.getElementById('board');
 const submitBtn = document.getElementById('submit');
 const message = document.getElementById('message');
 
-const month = document.getElementById('month');
-const day = document.getElementById('day');
-const year = document.getElementById('year');
+const monthInput = document.getElementById('month');
+const dayInput = document.getElementById('day');
+const yearInput = document.getElementById('year');
 
 async function startGame() {
     try{
@@ -92,8 +92,12 @@ function renderGuess(result, guess) {
 
     keys.forEach((key, index) => {
         const cell = row.children[index];
-        cell.textContent = values[index];
-        cell.classList.add(mapResultToClass(result[key]));
+
+        setTimeout(() => {
+            cell.textContent = values[index];
+            cell.classList.add('flip');
+            cell.classList.add(mapResultToClass(result[key]));
+        }, index * 200);
     });
 }
 
